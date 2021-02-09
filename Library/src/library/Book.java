@@ -10,13 +10,13 @@ import java.lang.Integer;
  * @author Me
  */
 public class Book {
-    private String number = "10001"; //a 5-digit serial number unique to the book
+    private String number; //a 5-digit serial number unique to the book
     private String name; 
     private boolean checkedOut;
     private Date datePublished;
     
-    public Book (String name, boolean checkOut, Date date){ 
-        this.number = number;
+    public Book (String name, boolean checkOut, Date date, int number){ 
+        this.number = String.valueOf(number);
         this.name = name;
         this.checkedOut = checkOut;
         this.datePublished = date;
