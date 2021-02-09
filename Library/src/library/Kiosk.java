@@ -33,9 +33,10 @@ public class Kiosk {
 	        case "A":
 	            String title = userCommand[1];
 	            Date date = new Date (userCommand[2]);
-	            curSerial++;
 	            if(date.isValid()){
+	            	curSerial++;
 	                Book book = new Book(title, false, date, curSerial);
+	                library.add(book);
 	                System.out.println(title + " added to library"); 
 	            }
 	            else
@@ -46,18 +47,19 @@ public class Kiosk {
 	            System.exit(0);
 	            break;
 	        case "R" :
+	        	Book serial = new Book(null, false, null, Integer.parseInt(userCommand[1]));   //A null book that is used to for its serial number in the remove method
+	        	library.remove(serial);
 	            break;
 	        case "O" :
 	            break;
 	        case "PA":
+	        	library.print();
 	            break;
 	        case "PD":
 	            break;
 	        case "PN":
 	            break;
         }
-    }
-
-        
+        }  
     }
 }

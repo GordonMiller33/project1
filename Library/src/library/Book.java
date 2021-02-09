@@ -24,7 +24,7 @@ public class Book {
     }
     
     private void updateNumber(){
-        int tempNumber = Integer.parseInt(number + 1);
+        int tempNumber = Integer.parseInt(number);
         number = Integer.toString(tempNumber);
     }
     
@@ -37,9 +37,9 @@ public class Book {
     //@Override
     public String toString() { 
         String tempBookDetails;
-        String checkOutStatus = "is available.";
+        String checkOutStatus = "is not available";
         if (checkedOut == false)
-            checkOutStatus = "is not available.";
+            checkOutStatus = "is available";
         tempBookDetails = "Book#" + this.number + "::" + this.name + "::" + 
                            checkOutStatus + ".";
         return tempBookDetails;

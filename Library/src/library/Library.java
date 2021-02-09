@@ -20,14 +20,15 @@ public class Library {
     
     public Library() { } // default constructor to create an empty bag
     
-    private int find(Book book) { // helper method to find a book in the bag
-        int index = 0;
-        for (Book wanted : books){  //NEEDS REAL SOLUTION
-            if (wanted == book){
-                index = 1;
+    private int find(Book book) {    //helper method to find a book in the bag
+    	System.out.println("finding");
+    	int index = BOOK_NOT_FOUND;
+        for (int i = 0; i < numBooks; i++){
+        	System.out.println("book serial:" + book.getNumber() + "  checked serial:" + books[i].getNumber());
+            if (books[i].getNumber() == book.getNumber()){
+                index = i;
+                break;
             }
-            else
-                index = BOOK_NOT_FOUND;
         }
         return index;
     } 
@@ -44,13 +45,32 @@ public class Library {
     public void add(Book book) {
         if (books.length == numBooks)
             grow();
-        books[numBooks + 1] = book;
+        books[numBooks] = book;
         numBooks +=1;
     }
-    //public boolean remove(Book book) { }
+    public boolean remove(Book book) { 
+    	int index = find(book);
+    	if(index == BOOK_NOT_FOUND) {
+    		System.out.println("Book not found");
+    		return false;
+    	}
+    	else {
+    		System.out.println("index " + index);
+    		for(int i = index; i < numBooks-1;i++) {
+    			books[i] = books[i+1];
+    		}
+    		books[numBooks] = null;
+    		numBooks--;
+    		return true;
+    	}
+    }
     //public boolean checkOut(Book book) { }
     //public boolean returns(Book book) { }
-    public void print() { }
+    public void print() { 
+    	for(int i = 0; i < numBooks;i++) {
+    		System.out.println(this.books[i]);
+    	}
+    }
     public void printByDate() {
         Book tempBook;
         for(int i = 0; i<books.length; i++){

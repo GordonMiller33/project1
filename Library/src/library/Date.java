@@ -59,7 +59,7 @@ public class Date {
     	this.day = todayDay;
     }
     
-    public boolean isValid() { // Check my solution(From Gordon)
+    public boolean isValid() { //Solved    -Gordon
         Date today = new Date();
     	if ( this.year < 1900 || this.year > today.year)
             return false;
