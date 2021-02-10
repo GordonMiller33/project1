@@ -38,16 +38,22 @@ public class Book {
     public String toString() { 
         String tempBookDetails;
         String checkOutStatus = "is not available";
-        if (checkedOut == false)
+        if (checkedOut == false)	
             checkOutStatus = "is available";
-        tempBookDetails = "Book#" + this.number + "::" + this.name + "::" + 
-                           checkOutStatus + ".";
+        tempBookDetails = "Book#" + this.number + "::" + this.name + "::" + this.datePublished + "::" + checkOutStatus + ".";
         return tempBookDetails;
     }
     public int getNumber(){
         return Integer.parseInt(this.number);
     }
     public Date getDate(){
+    	Date published = this.datePublished;
         return this.datePublished;
+    }
+    public boolean getCheckedOut() {
+    	return this.checkedOut;
+    }
+    public void setCheckedOut(boolean status) {
+    	this.checkedOut = status;
     }
 }

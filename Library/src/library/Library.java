@@ -21,10 +21,8 @@ public class Library {
     public Library() { } // default constructor to create an empty bag
     
     private int find(Book book) {    //helper method to find a book in the bag
-    	System.out.println("finding");
     	int index = BOOK_NOT_FOUND;
         for (int i = 0; i < numBooks; i++){
-        	System.out.println("book serial:" + book.getNumber() + "  checked serial:" + books[i].getNumber());
             if (books[i].getNumber() == book.getNumber()){
                 index = i;
                 break;
@@ -51,11 +49,9 @@ public class Library {
     public boolean remove(Book book) { 
     	int index = find(book);
     	if(index == BOOK_NOT_FOUND) {
-    		System.out.println("Book not found");
     		return false;
     	}
     	else {
-    		System.out.println("index " + index);
     		for(int i = index; i < numBooks-1;i++) {
     			books[i] = books[i+1];
     		}
@@ -64,32 +60,54 @@ public class Library {
     		return true;
     	}
     }
-    //public boolean checkOut(Book book) { }
-    //public boolean returns(Book book) { }
-    public void print() { 
-    	for(int i = 0; i < numBooks;i++) {
-    		System.out.println(this.books[i]);
+    public boolean checkOut(Book book) { 
+    	int index = find(book);
+    	if(index == BOOK_NOT_FOUND) {
+    		return false;
+    	}
+    	else if(books[index].getCheckedOut()){
+    		return false;
+    	}
+    	else {
+    		books[index].setCheckedOut(true);
+    		return true;
     	}
     }
-    public void printByDate() {
-        Book tempBook;
-        for(int i = 0; i<books.length; i++){
-            for(int j = 1; j<books.length-1; j++){
-                if(books[j-1].getNumber() > books[j].getNumber()){
-                    tempBook = books[j-1];
-                }
-            }
-        }
+    //public boolean returns(Book book) { }
+    public void print() { 
+    	if(numBooks == 0) 
+    		System.out.println("Library catalog is empty!");
+    	else
+    		for(int i = 0; i < numBooks;i++) 
+    			System.out.println(this.books[i]);
     }
-    public void printByNumber() { 
-        Book tempBook;
-        for(int i = 0; i<books.length; i++){
-            for(int j = 1; j<books.length-1; j++){
-                if(books[j-1].getNumber() > books[j].getNumber()){
-                    tempBook = books[j-1];
-                }
-            }
-        }
+    public void printByDate() {
+    	if(numBooks == 0) 
+    		System.out.println("Library catalog is empty!");
+        else{
+	        Book tempBook;
+	        for(int i = 0; i<books.length; i++){
+	            for(int j = 1; j<books.length-1; j++){
+	                if(books[j-1].getNumber() > books[j].getNumber()){
+	                    tempBook = books[j-1];
+	                }
+	            }
+	        }
+    	}
+    }
+    public void printByNumber() {
+    	if(numBooks == 0) 
+    		System.out.println("Library catalog is empty!");
+    	else{
+	        Book tempBook;
+	        for(int i = 0; i<books.length; i++){
+	            for(int j = 1; j<books.length-1; j++){
+	                if(books[j-1].getNumber() > books[j].getNumber()){
+	                    tempBook = books[j-1];
+	                }
+	            }
+	        }
+    	}
     }
         
 }

@@ -22,6 +22,7 @@ public class Kiosk {
     public void run(){
         System.out.println("Library Kiosk running");
         Date Today = new Date();
+        Book serial;   //A null book that is used to for its serial number in some command
         
         //ADD TRY CATCH BLOCK
         while(true) {
@@ -47,15 +48,24 @@ public class Kiosk {
 	            System.exit(0);
 	            break;
 	        case "R" :
-	        	Book serial = new Book(null, false, null, Integer.parseInt(userCommand[1]));   //A null book that is used to for its serial number in the remove method
-	        	library.remove(serial);
+	        	serial = new Book(null, false, null, Integer.parseInt(userCommand[1]));   
+	        	if(library.remove(serial))
+	        		System.out.println("Book#" + userCommand[1] + " removed.");
+	        	else
+	        		System.out.println("Unable to remove, the library does not have this book.");
 	            break;
 	        case "O" :
+	        	serial = new Book(null, false, null, Integer.parseInt(userCommand[1]));
+	        	if(library.checkOut(serial))
+	        		System.out.println("You’ve checked out Book#" + userCommand[1] + ". Enjoy!");
+	        	else
+	        		System.out.println("Book#" + userCommand[1] +  " is not available.");
 	            break;
 	        case "PA":
 	        	library.print();
 	            break;
 	        case "PD":
+	        	
 	            break;
 	        case "PN":
 	            break;

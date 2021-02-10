@@ -18,10 +18,10 @@ public class Date {
     
     public Date(String date) { 
         this.year = Integer.parseInt(date.substring(6));
-        this.day = Integer.parseInt(date.substring(3,4));
-        this.month = Integer.parseInt(date.substring(0,1));
+        this.day = Integer.parseInt(date.substring(3,5));
+        this.month = Integer.parseInt(date.substring(0,2));
     }
-    public Date() { //create an object with today's date (see Calendar class)
+    public Date() { 
     	String todayString = Calendar.getInstance().getTime().toString();
     	int todayYear = Integer.parseInt(todayString.substring(24,28));
     	String todayMonthString = todayString.substring(4,7);
@@ -29,28 +29,40 @@ public class Date {
     	switch (todayMonthString){
         case "Jan":
         	todayMonth = 1;
+        	break;
         case "Feb":
         	todayMonth = 2;
+        	break;
         case "Mar":
         	todayMonth = 3;
+        	break;
         case "Apr":
         	todayMonth = 4;
+        	break;
         case "May":
         	todayMonth = 5;
+        	break;
         case "Jun":
         	todayMonth = 6;
+        	break;
         case "Jul":
         	todayMonth = 7;
+        	break;
         case "Aug":
         	todayMonth = 8;
+        	break;
         case "Sep":
         	todayMonth = 9;
+        	break;
         case "Oct":
         	todayMonth = 10;
+        	break;
         case "Nov":
         	todayMonth = 11;
+        	break;
         case "Dec":
         	todayMonth = 12;
+        	break;
     	}
     	int todayDay = Integer.parseInt(todayString.substring(8,10));
     	
@@ -59,16 +71,23 @@ public class Date {
     	this.day = todayDay;
     }
     
-    public boolean isValid() { //Solved    -Gordon
+    public boolean isValid() { 
+    	
         Date today = new Date();
     	if ( this.year < 1900 || this.year > today.year)
             return false;
-    	if( this.year == today.year && this.month > today.month )
+    	else if( this.year == today.year && this.month > today.month ) {
     		return false;
-    	if( this.year == today.year && this.month == today.month && this.day > today.day )
+    	}
+    	else if( this.year == today.year && this.month == today.month && this.day > today.day )
     		return false;
     	else
             return true;
+    }
+    
+    @Override
+    public String toString() {
+    	return this.month + "/" + this.day + "/" + this.year;
     }
         
 }
