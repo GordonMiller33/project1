@@ -40,14 +40,14 @@ public class Book {
         String checkOutStatus = "is not available";
         if (checkedOut == false)	
             checkOutStatus = "is available";
-        tempBookDetails = "Book#" + this.number + "::" + this.name + "::" + this.datePublished + "::" + checkOutStatus + ".";
+        tempBookDetails = "Book#" + this.number + "::" + this.name + "::" + this.datePublished.getMonth() + "/" 
+        		+ this.datePublished.getDay() + "/" + this.datePublished.getYear() + "::" + checkOutStatus + ".";
         return tempBookDetails;
     }
     public int getNumber(){
         return Integer.parseInt(this.number);
     }
     public Date getDate(){
-    	Date published = this.datePublished;
         return this.datePublished;
     }
     public boolean getCheckedOut() {

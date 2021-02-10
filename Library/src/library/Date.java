@@ -17,9 +17,11 @@ public class Date {
     private int day;
     
     public Date(String date) { 
-        this.year = Integer.parseInt(date.substring(6));
-        this.day = Integer.parseInt(date.substring(3,5));
-        this.month = Integer.parseInt(date.substring(0,2));
+    	String[] dateParts = date.split("/");
+    	System.out.println(dateParts[1]);
+        this.year = Integer.parseInt(dateParts[2]);
+    	this.day = Integer.parseInt(dateParts[1]);
+        this.month = Integer.parseInt(dateParts[0]);
     }
     public Date() { 
     	String todayString = Calendar.getInstance().getTime().toString();
@@ -85,9 +87,17 @@ public class Date {
             return true;
     }
     
-    @Override
-    public String toString() {
-    	return this.month + "/" + this.day + "/" + this.year;
+    
+    public int getYear() {
+    	return this.year;
+    }
+    
+    public int getMonth() {
+    	return this.month;
+    }
+    
+    public int getDay() {
+    	return this.day;
     }
         
 }

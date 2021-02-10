@@ -73,7 +73,19 @@ public class Library {
     		return true;
     	}
     }
-    //public boolean returns(Book book) { }
+    public boolean returns(Book book) { 
+    	int index = find(book);
+    	if(index == BOOK_NOT_FOUND) {
+    		return false;
+    	}
+    	else if(!(books[index].getCheckedOut())){
+    		return false;
+    	}
+    	else {
+    		books[index].setCheckedOut(false);
+    		return true;
+    	}
+    }
     public void print() { 
     	if(numBooks == 0) 
     		System.out.println("Library catalog is empty!");
@@ -84,30 +96,42 @@ public class Library {
     public void printByDate() {
     	if(numBooks == 0) 
     		System.out.println("Library catalog is empty!");
-        else{
-	        Book tempBook;
-	        for(int i = 0; i<books.length; i++){
-	            for(int j = 1; j<books.length-1; j++){
-	                if(books[j-1].getNumber() > books[j].getNumber()){
-	                    tempBook = books[j-1];
-	                }
-	            }
-	        }
-    	}
+        else {
+            for(int i = 0; i < numBooks - 1; i++){
+                for(int j = 0; j < numBooks - i - 1; j++){
+                    if(compareDates(books[j].getDate(), books[j+1].getDate())){
+                        Book temp = books[j];
+                        books[j] = books[j + 1];
+                        books[j + 1] = temp;
+                    }
+                }
+            }
+            this.print();
+        }
     }
+    
     public void printByNumber() {
     	if(numBooks == 0) 
     		System.out.println("Library catalog is empty!");
-    	else{
-	        Book tempBook;
-	        for(int i = 0; i<books.length; i++){
-	            for(int j = 1; j<books.length-1; j++){
-	                if(books[j-1].getNumber() > books[j].getNumber()){
-	                    tempBook = books[j-1];
-	                }
-	            }
-	        }
-    	}
+    	else {
+            for(int i = 0; i < numBooks - 1; i++){
+                for(int j = 0; j < numBooks - i - 1; j++){
+                    if(books[j].getNumber() > books[j + 1].getNumber()){
+                        Book temp = books[j];
+                        books[j] = books[j + 1];
+                        books[j + 1] = temp;
+                    }
+                }
+            }
+            this.print();
+        }
     }
-        
-}
+    
+    private boolean compareDates(Date date1, Date date2) {
+    	int date1Value = date1.getYear()*10000 + date1.getMonth()*100 + date1.getDay();
+    	int date2Value = date2.getYear()*10000 + date2.getMonth()*100 + date2.getDay();
+    	return (date1Value > date2Value);
+    }
+ 	}
+    
+    //private int dateToInt()

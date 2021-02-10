@@ -61,13 +61,21 @@ public class Kiosk {
 	        	else
 	        		System.out.println("Book#" + userCommand[1] +  " is not available.");
 	            break;
+	        case "I":
+	        	serial = new Book(null, false, null, Integer.parseInt(userCommand[1]));
+	        	if(library.returns(serial))
+	        		System.out.println("Book#" + userCommand[1] +  " return has completed. Thanks!");
+	        	else
+	        		System.out.println("Unable to return Book#" + userCommand[1]);
+	            break;
 	        case "PA":
 	        	library.print();
 	            break;
 	        case "PD":
-	        	
+	        	library.printByDate();
 	            break;
 	        case "PN":
+	        	library.printByNumber();
 	            break;
         }
         }  
